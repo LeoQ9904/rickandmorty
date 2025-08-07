@@ -1,15 +1,112 @@
-# Rick and Morty App 🚀
+# Rick and Morty Explorer 🚀👽
 
-Una aplicación Next.js con React para explorar el universo de Rick and Morty, implementada con Git Flow y despliegue automático en Firebase Hosting.
+Una aplicación web moderna desarrollada con Next.js que permite explorar el universo de Rick and Morty de manera interactiva. Los usuarios pueden navegar por personajes, episodios y ubicaciones, agregar elementos a favoritos y disfrutar de una experiencia de usuario fluida y responsive.
 
-## 🛠️ Tecnologías
+## ✨ Funcionalidades Principales
 
-- **Next.js 15.4.6** - Framework de React
+### 🎭 Exploración de Personajes
+
+- **Lista de Personajes**: Visualiza todos los personajes de la serie con información detallada
+- **Detalle de Personaje**: Ve información completa incluyendo estado, especie, género, origen y ubicación
+- **Favoritos de Personajes**: Guarda tus personajes favoritos con persistencia local
+
+### 📺 Exploración de Episodios
+
+- **Lista de Episodios**: Navega por todos los episodios de la serie
+- **Detalle de Episodio**: Ve información completa del episodio, incluyendo personajes que aparecen
+- **Favoritos de Episodios**: Marca episodios como favoritos
+
+### 🌍 Exploración de Ubicaciones
+
+- **Lista de Ubicaciones**: Descubre todas las ubicaciones del universo Rick and Morty
+- **Detalle de Ubicación**: Ve información completa incluyendo residentes y episodios relacionados
+- **Favoritos de Ubicaciones**: Guarda tus ubicaciones favoritas
+
+### ⭐ Sistema de Favoritos
+
+- **Gestión Unificada**: Sistema centralizado para manejar favoritos de personajes, episodios y ubicaciones
+- **Persistencia**: Los favoritos se guardan localmente usando Zustand con persistencia
+- **Interfaz Intuitiva**: Botones de favorito con iconos intuitivos y feedback visual
+
+### 🎨 Experiencia de Usuario
+
+- **Diseño Responsive**: Optimizado para dispositivos móviles, tablets y desktop
+- **Interfaz Moderna**: Diseño atractivo con Tailwind CSS
+- **Navegación Fluida**: Routing con App Router de Next.js 15
+- **Estados de Carga**: Componentes de loading y manejo de errores
+- **Feedback Visual**: Animaciones y transiciones suaves
+
+## 🛠️ Stack Tecnológico
+
+### Frontend Framework
+
+- **Next.js 15.4.6** - Framework de React con App Router
 - **React 19.1.0** - Biblioteca de interfaz de usuario
-- **TypeScript** - Tipado estático
-- **Tailwind CSS** - Framework de CSS
-- **Firebase Hosting** - Hosting y despliegue
-- **GitHub Actions** - CI/CD automático
+- **TypeScript** - Tipado estático para mayor robustez
+
+### Styling y UI
+
+- **Tailwind CSS 4.x** - Framework de CSS utility-first
+- **CSS Modules** - Estilos con scope local
+- **Responsive Design** - Diseño adaptativo para todos los dispositivos
+
+### Estado y Datos
+
+- **Zustand 5.0.7** - Gestión de estado ligera y performante
+- **Rick and Morty API** - API REST para obtener datos de la serie
+- **Custom Hooks** - Hooks personalizados para fetching de datos
+- **Local Storage** - Persistencia de favoritos en el navegador
+
+### Calidad de Código
+
+- **ESLint** - Linter con reglas de Next.js y TypeScript
+- **Prettier** - Formateador de código automático
+- **Husky** - Git hooks para automatizar tareas
+- **Lint-staged** - Ejecutar linters solo en archivos staged
+- **Commitlint** - Validación de mensajes de commit con Conventional Commits
+
+### CI/CD y Hosting
+
+- **Firebase Hosting** - Hosting optimizado para SPAs
+- **GitHub Actions** - Pipelines de CI/CD automático
+- **Git Flow** - Flujo de trabajo con ramas feature/release/hotfix
+- **Preview Deployments** - URLs de preview para Pull Requests
+
+### Herramientas de Desarrollo
+
+- **Turbopack** - Bundler ultra-rápido para desarrollo
+- **Hot Reload** - Recarga automática en desarrollo
+- **Type Safety** - Tipado completo con TypeScript
+- **VS Code Integration** - Configuración optimizada para VS Code
+
+## 🏗️ Arquitectura del Proyecto
+
+### Estructura de Carpetas
+
+```
+src/
+├── app/                    # App Router de Next.js 15
+│   ├── characters/         # Páginas de personajes
+│   ├── episodes/          # Páginas de episodios
+│   ├── locations/         # Páginas de ubicaciones
+│   └── favorites/         # Página de favoritos
+├── components/            # Componentes reutilizables
+│   ├── character/         # Componentes específicos de personajes
+│   ├── episodes/          # Componentes específicos de episodios
+│   └── locations/         # Componentes específicos de ubicaciones
+├── hooks/                 # Custom hooks
+├── providers/             # Servicios de API y providers
+├── stores/                # Estado global con Zustand
+└── types/                 # Definiciones de tipos TypeScript
+```
+
+### Patrones de Diseño Implementados
+
+- **Custom Hooks**: Encapsulación de lógica de fetching y estado
+- **Provider Pattern**: Centralización de servicios de API
+- **Component Composition**: Componentes modulares y reutilizables
+- **State Management**: Estado global con Zustand para favoritos
+- **TypeScript First**: Tipado estricto en toda la aplicación
 
 ## 🚀 Desarrollo Local
 
@@ -186,18 +283,72 @@ La configuración del workspace ya está incluida en `.vscode/settings.json` con
 - Auto-fix de ESLint al guardar
 - Configuración de Prettier como formateador por defecto
 
-## 📁 Estructura del Proyecto
+## 📁 Estructura Detallada
 
 ```
 rickandmorty/
-├── src/app/           # Páginas y componentes de Next.js
-├── public/            # Archivos estáticos
-├── .github/workflows/ # GitHub Actions
-├── out/               # Build de producción (generado)
-├── firebase.json      # Configuración de Firebase
-├── next.config.ts     # Configuración de Next.js
-└── package.json       # Dependencias y scripts
+├── src/
+│   ├── app/                    # App Router (Next.js 15)
+│   │   ├── characters/         # Rutas de personajes
+│   │   │   ├── page.tsx       # Lista de personajes
+│   │   │   └── [id]/page.tsx  # Detalle de personaje
+│   │   ├── episodes/          # Rutas de episodios
+│   │   │   ├── page.tsx       # Lista de episodios
+│   │   │   └── [id]/page.tsx  # Detalle de episodio
+│   │   ├── locations/         # Rutas de ubicaciones
+│   │   │   ├── page.tsx       # Lista de ubicaciones
+│   │   │   └── [id]/page.tsx  # Detalle de ubicación
+│   │   ├── favorites/         # Página de favoritos
+│   │   ├── layout.tsx         # Layout principal
+│   │   └── page.tsx           # Página de inicio
+│   ├── components/            # Componentes UI
+│   │   ├── character/         # Componentes de personajes
+│   │   │   ├── List.tsx       # Lista de personajes
+│   │   │   └── Detail.tsx     # Detalle de personaje
+│   │   ├── episodes/          # Componentes de episodios
+│   │   ├── locations/         # Componentes de ubicaciones
+│   │   ├── FavoriteButton.tsx # Botón de favoritos
+│   │   ├── Nav.tsx           # Navegación
+│   │   └── Loading.tsx       # Estados de carga
+│   ├── hooks/                 # Custom hooks
+│   │   └── useFavorites.ts   # Hook de favoritos
+│   ├── providers/            # Servicios de API
+│   │   ├── rickandmorty-api.ts # Cliente de API
+│   │   └── hooks.ts          # Hooks de fetching
+│   ├── stores/               # Estado global
+│   │   └── favoritesStore.ts # Store de favoritos
+│   └── types/                # Tipos TypeScript
+│       └── index.ts          # Definiciones de tipos
+├── public/                   # Assets estáticos
+├── .github/workflows/        # GitHub Actions
+├── .vscode/                  # Configuración VS Code
+├── firebase.json            # Configuración Firebase
+├── next.config.ts           # Configuración Next.js
+├── tailwind.config.ts       # Configuración Tailwind
+├── tsconfig.json           # Configuración TypeScript
+└── package.json            # Dependencias y scripts
 ```
+
+## 🔌 APIs y Servicios
+
+### Rick and Morty API
+
+- **Base URL**: `https://rickandmortyapi.com/api`
+- **Endpoints utilizados**:
+  - `/character` - Lista y detalles de personajes
+  - `/episode` - Lista y detalles de episodios
+  - `/location` - Lista y detalles de ubicaciones
+- **Características**:
+  - API REST pública y gratuita
+  - Paginación automática
+  - Filtros y búsqueda
+  - Datos completos y actualizados
+
+### Servicios de Terceros
+
+- **Firebase Hosting**: Hosting estático con CDN global
+- **GitHub Actions**: CI/CD automatizado
+- **Vercel Analytics** (opcional): Métricas de rendimiento
 
 ## 🤝 Contribución
 
