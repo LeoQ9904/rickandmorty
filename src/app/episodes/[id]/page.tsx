@@ -22,10 +22,11 @@ export async function generateStaticParams() {
   }
 }
 
-export default function EpisodeDetailPage({
+export default async function EpisodeDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  return <EpisodeDetailClient episodeId={params.id} />;
+  const { id } = await params;
+  return <EpisodeDetailClient episodeId={id} />;
 }

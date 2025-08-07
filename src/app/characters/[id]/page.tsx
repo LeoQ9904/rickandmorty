@@ -23,10 +23,11 @@ export async function generateStaticParams() {
   }
 }
 
-export default function CharacterDetailPage({
+export default async function CharacterDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  return <CharacterDetailClient characterId={params.id} />;
+  const { id } = await params;
+  return <CharacterDetailClient characterId={id} />;
 }

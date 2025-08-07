@@ -39,14 +39,7 @@ export function useCharacters(filters: CharacterFilters = {}) {
     }
 
     fetchCharacters();
-  }, [
-    filters.name,
-    filters.status,
-    filters.species,
-    filters.type,
-    filters.gender,
-    filters.page,
-  ]);
+  }, [filters]);
 
   return { characters, loading, error, totalPages, totalCount };
 }
@@ -109,7 +102,7 @@ export function useLocations(filters: LocationFilters = {}) {
     }
 
     fetchLocations();
-  }, [filters.name, filters.type, filters.dimension, filters.page]);
+  }, [filters]);
 
   return { locations, loading, error, totalPages, totalCount };
 }
@@ -172,7 +165,7 @@ export function useEpisodes(filters: EpisodeFilters = {}) {
     }
 
     fetchEpisodes();
-  }, [filters.name, filters.episode, filters.page]);
+  }, [filters]);
 
   return { episodes, loading, error, totalPages, totalCount };
 }

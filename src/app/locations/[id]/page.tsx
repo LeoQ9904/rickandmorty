@@ -23,10 +23,11 @@ export async function generateStaticParams() {
   }
 }
 
-export default function LocationDetailPage({
+export default async function LocationDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  return <LocationDetailClient locationId={params.id} />;
+  const { id } = await params;
+  return <LocationDetailClient locationId={id} />;
 }
